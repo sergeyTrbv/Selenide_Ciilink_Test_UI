@@ -23,8 +23,7 @@ public class BaseTests {
     public void options() {
         Configuration.timeout = 6000;
         Configuration.browser = "chrome";
-        Configuration.holdBrowserOpen = true; // открывать/закрывать веб-страницу
-
+        Configuration.holdBrowserOpen = true; // false
         ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--start-fullscreen"); // "--start-maximized" или "--start-fullscreen"
         options.addArguments("--disable-extensions");

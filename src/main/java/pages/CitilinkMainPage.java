@@ -10,8 +10,6 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
 
 public class CitilinkMainPage extends BasePage {
-
-    private static final String COOCKIE = "//button[ @data-meta-disabled=\"false\"]/span[text()='Я согласен']";
     private static final String HEAD_MENU = "//a[@data-meta-name='DesktopHeaderFixed__catalog-menu']//span[contains(text(), '";
     private static final String TAIL_MENU = "')]";
     private static final String HEAD_PRODUCT_IN_MENU = "//div[@class='PopupScrollContainer']//span[@color='None' " +
@@ -20,8 +18,6 @@ public class CitilinkMainPage extends BasePage {
     private static final String HEAD_PRODUCT_IN_CATALOG = "//div[@class='rcs-inner-container']//span[text()='";
     private static final String TALE_PRODUCT_IN_CATALOG = "']";
     private static final String CHECK_PAGE_NAME = "//div[@data-meta-name='SubcategoryPageTitle']//h1[@color='Main']";
-
-
 
 
     @Step("Нажимаем на меню: {catalogButton}")
@@ -48,7 +44,7 @@ public class CitilinkMainPage extends BasePage {
 
         $x(CHECK_PAGE_NAME).shouldBe(visible).shouldHave(text(productNameInCatalog));
         String actualTitle = $x(CHECK_PAGE_NAME).getText();
-        System.out.println("Actual Title: " + actualTitle);
+        System.out.println("Тестируемый товар: " + actualTitle);
         Assertions.assertEquals(productNameInCatalog, actualTitle, "Заголовок страницы не соответствует ожидаемому");
         return typeNextPage.cast(page(typeNextPage));
     }

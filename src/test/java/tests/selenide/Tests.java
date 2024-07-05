@@ -16,10 +16,10 @@ public class Tests extends BaseTests{
     @Feature("Проверка поисковика citilink")
     @DisplayName("Проверка поисковика citilink - всё в степах")
     @ParameterizedTest(name = "{displayName} {arguments}")
-    @MethodSource("helpers.DataProvider#providerCheckingLaptop")
-    public void selenidTestCitilinkProductStepsAll(String textToFind, String query, String catalogButton,
+    @MethodSource("helpers.DataProvider#providerChecking")
+    public void selenideTestCitilinkProductStepsAll(String textToFind, String query, String catalogButton,
                                                    String productNameInMenu,String productNameInCatalog,
-                                                   String brandSection,String brand) {
+                                                   String brandSection,String brand,String product) {
 
         open("https://www.google.ru/", GoogleMainPage.class)
                 .search(textToFind)
@@ -29,10 +29,8 @@ public class Tests extends BaseTests{
                 .openProductInCatalog(productNameInCatalog)
                 .checkPage(productNameInCatalog, CitilinkSetParameters.class)
                 .scrollToSection(brandSection)
-                .clickCheckbox(brand, CheckingTheElements.class);
-
-
-
+                .clickCheckbox(brand, CheckingTheElements.class)
+                .checkIPhoneProducts(product);
     }
 
 }
