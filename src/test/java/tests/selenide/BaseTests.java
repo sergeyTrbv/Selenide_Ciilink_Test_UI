@@ -26,11 +26,13 @@ public class BaseTests {
         Configuration.holdBrowserOpen = true; // открывать/закрывать веб-страницу
 
         ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--start-fullscreen"); // "--start-maximized" или "--start-fullscreen"
         options.addArguments("--disable-extensions");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+//        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "normal");
         Configuration.browserCapabilities = capabilities;
 
 /*

@@ -21,7 +21,9 @@ public class DataProvider {
     public static Stream<Arguments> providerCheckingLaptop() {
         return Stream.of(
                 Arguments.of("citilink", "Ситилинк - интернет-магазин техники, электроники ...",
-                        "Каталог товаров", "Телефоны")
+                        "Каталог товаров", "Смартфоны и планшеты", "Смартфоны","Бренд","APPLE")
+                , Arguments.of("citilink", "Ситилинк - интернет-магазин техники, электроники ...",
+                        "Каталог товаров", "Техника для кухни", "Стиральные машины","Бренд","INDESIT")
         );
     }
 }
