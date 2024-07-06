@@ -23,6 +23,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 
+/**
+ * Класс {@code CustomAllureSelenide} расширяет функциональность класса {@code AllureSelenide}, предоставляя
+ * расширенные возможности логирования и прикрепления файлов для тестов на основе Selenide, интегрированных с
+ * отчетами Allure.
+ * Этот класс позволяет настраивать сохранение скриншотов, HTML-кода страницы и логов браузера, а также
+ * логирование шагов Selenide.
+ *
+ * @autor  Biryukov Aleksey
+ */
 public class CustomAllureSelenide extends AllureSelenide {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AllureSelenide.class);
@@ -46,7 +55,8 @@ public class CustomAllureSelenide extends AllureSelenide {
 
     private static Optional<byte[]> getScreenshotBytes() {
         try {
-            return WebDriverRunner.hasWebDriverStarted() ? Optional.of(((TakesScreenshot)WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES)) : Optional.empty();
+            return WebDriverRunner.hasWebDriverStarted() ? Optional.of(((TakesScreenshot)WebDriverRunner.
+                    getWebDriver()).getScreenshotAs(OutputType.BYTES)) : Optional.empty();
         } catch (WebDriverException var1) {
             LOGGER.warn("Could not get screen shot", var1);
             return Optional.empty();
@@ -55,7 +65,8 @@ public class CustomAllureSelenide extends AllureSelenide {
 
     private static Optional<byte[]> getPageSourceBytes() {
         try {
-            return WebDriverRunner.hasWebDriverStarted() ? Optional.of(WebDriverRunner.getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8)) : Optional.empty();
+            return WebDriverRunner.hasWebDriverStarted() ? Optional.of(WebDriverRunner.getWebDriver().
+                    getPageSource().getBytes(StandardCharsets.UTF_8)) : Optional.empty();
         } catch (WebDriverException var1) {
             LOGGER.warn("Could not get page source", var1);
             return Optional.empty();
@@ -84,7 +95,8 @@ public class CustomAllureSelenide extends AllureSelenide {
             if (!this.logTypesToSave.isEmpty()) {
                 this.logTypesToSave.forEach((logType, level) -> {
                     byte[] content = getBrowserLogs(logType, level).getBytes(StandardCharsets.UTF_8);
-                    this.lifecycle.addAttachment("Logs from: " + logType, "application/json", ".txt", content);
+                    this.lifecycle.addAttachment("Logs from: " + logType, "application/json",
+                            ".txt", content);
                 });
             }
 
@@ -101,8 +113,10 @@ public class CustomAllureSelenide extends AllureSelenide {
                         break;
                     case FAIL:
                         this.lifecycle.updateStep((stepResult) -> {
-                            stepResult.setStatus((Status) ResultsUtils.getStatus(event.getError()).orElse(Status.BROKEN));
-                            stepResult.setStatusDetails((StatusDetails)ResultsUtils.getStatusDetails(event.getError()).orElse(new StatusDetails()));
+                            stepResult.setStatus((Status) ResultsUtils.getStatus(event.getError()).
+                                    orElse(Status.BROKEN));
+                            stepResult.setStatusDetails((StatusDetails)ResultsUtils.
+                                    getStatusDetails(event.getError()).orElse(new StatusDetails()));
                         });
                         break;
                     default:
