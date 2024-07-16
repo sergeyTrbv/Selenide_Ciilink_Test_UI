@@ -13,6 +13,29 @@ import org.aeonbits.owner.Config;
         "system:env",
         "file:src/main/resources/tests.properties"})
 public interface TestsProperties extends Config {
-    @Config.Key("google.url")
-    String googleUrl();
+
+
+    @Config.Key("page.load.timeout")
+    long pageLoadTimeout();
+
+    @Config.Key("browser")
+    String browser();
+
+    @Config.Key("hold.Browser.Open")
+    boolean holdBrowserOpen();
+
+    @Config.Key("start.Fullscreen")
+    boolean startFullscreen();
+
+    @Config.Key("page.Load.Strategy")
+    String pageLoadStrategy();
+
+    @Config.Key("arguments.for.browser")
+    String argumentsForBrowser();
+
+    @Config.Key("screenshots.power")
+    boolean screenshotsPower();
+
+    @Config.Key("screenshots.save.Page.Source")
+    boolean screenshotsSavePageSource();
 }

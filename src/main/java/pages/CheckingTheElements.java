@@ -98,5 +98,6 @@ public class CheckingTheElements extends BasePage {
             return false;
         }
     }
+
 }
 
