@@ -1,13 +1,16 @@
 package helpers;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+
+import java.time.Duration;
+
 
 /**
  * Класс {@code LoadingHelper} для ожидания загрузки элементов на странице.
+ *
+ * @author SergeyTrbv
  */
 public class LoadingHelper {
 
@@ -16,33 +19,22 @@ public class LoadingHelper {
      */
     private static final String LOADING_ORANGE = "//div[@color='orange']";
 
-//    /**
-//     * Объект типа {@code WebDriver} для взаимодействия с браузером.
-//     */
-//    private WebDriver driver;
-//
-//    /**
-//     * Объект типа {@code WebDriverWait} использующийся для ожидания элементов на странице.
-//     */
-//    private WebDriverWait wait;
-//
-//    /**
-//     * Конструктор класса.
-//     *
-//     * @param driver экземпляр WebDriver для управления браузером.
-//     * @param wait   экземпляр WebDriverWait для ожидания элементов на странице.
-//     */
-//    public LoadingHelper(WebDriver driver, WebDriverWait wait) {
-//        this.driver = driver;
-//        this.wait = wait;
-//    }
-//
-//    /**
-//     * Метод {@code loading} ожидает, пока элемент загрузки исчезнет со страницы.
-//     */
-//    public void loading() {
-//        WebElement loadingElement = driver.findElement(By.xpath(LOADING_ORANGE));
-//        wait.until(ExpectedConditions.stalenessOf(loadingElement));
-//    }
+    /**
+     * Метод {@code loading} ожидает, пока элемент загрузки исчезнет со страницы.
+     */
+    public void loading() {
+        SelenideElement loadingElement = Selenide.$x(LOADING_ORANGE);
+//        loadingElement.shouldBe(Condition.visible, Duration.ofSeconds(5));
+//        loadingElement.should(Condition.disappear, Duration.ofSeconds(10));
+
+        // Ожидание, что элемент станет видимым в течение 5 секунд
+//        loadingElement.shouldBe(Condition.visible, Duration.ofSeconds(5));
+
+        // Ожидание, что элемент исчезнет в течение 10 секунд
+        loadingElement.should(Condition.disappear, Duration.ofSeconds(10));
+
+        // Ожидание, что элемент не будет видимым в течение 5 секунд
+//        loadingElement.shouldNotBe(visible, Duration.ofSeconds(5));
+    }
 }
 
